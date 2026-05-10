@@ -336,11 +336,11 @@ async function main() {
         "Free time on the riverbank",
       ],
       coverImage:
-        "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1609952542401-00d1bd62ed85?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1545987796-200677ee1011?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1609952542401-00d1bd62ed85?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1591019479261-1a103585c559?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1604999333679-b86d54738315?auto=format&fit=crop&w=1600&q=80",
       ],
       region: TourRegion.HISTORIC,
       destinationCity: "Sonargaon",
@@ -428,11 +428,11 @@ async function main() {
         "Karamjal & Harbaria walking trails",
       ],
       coverImage:
-        "https://images.unsplash.com/photo-1535941339077-2dd1c7963098?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1535941339077-2dd1c7963098?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1502780402662-acc01917cf95?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1605552055839-cd88de5c2e2d?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=1600&q=80",
       ],
       region: TourRegion.RIVERINE,
       destinationCity: "Khulna",
@@ -511,11 +511,11 @@ async function main() {
         "Tea garden walk with the foreman",
       ],
       coverImage:
-        "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1582450871972-ab5ca641643d?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1597306183091-a59f86ed4b9d?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1563911892437-1feda0179e1b?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1582450871972-ab5ca641643d?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1597305877032-0668b3c6413b?auto=format&fit=crop&w=1600&q=80",
       ],
       region: TourRegion.TEA_COUNTRY,
       destinationCity: "Srimangal",
