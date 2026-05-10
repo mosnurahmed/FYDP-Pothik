@@ -7,9 +7,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ────────────────────────────────────────────────────────────
+// Enums
+// ────────────────────────────────────────────────────────────
+
 enum Role {
   USER
   ADMIN
+  // Future: TOUR_LEADER, ACCOUNTANT — add here, no schema change to User
+}
+
+enum TourStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED       // bookings closed (full or near-departure)
+  COMPLETED
+  CANCELLED
+}
+
+enum TourRegion {
+  COASTAL
+  HILL_TRACTS
+  HISTORIC
+  RIVERINE
+  URBAN
+  FOREST
+  TEA_COUNTRY
 }
 
 enum BusType {
@@ -17,12 +40,7 @@ enum BusType {
   NON_AC
   SLEEPER
   DOUBLE_DECKER
-}
-
-enum SeatStatus {
-  AVAILABLE
-  BOOKED
-  LOCKED
+  MINIBUS
 }
 
 enum BookingStatus {
@@ -39,98 +57,207 @@ enum PaymentStatus {
   REFUNDED
 }
 
+enum TravellerType {
+  ADULT
+  CHILD     // 5-12 years, charged child price
+  INFANT    // under 5, free
+}
+
+// ────────────────────────────────────────────────────────────
+// Identity
+// ────────────────────────────────────────────────────────────
+
 model User {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   name      String
-  email     String    @unique
+  email     String   @unique
   password  String
   phone     String?
-  role      Role      @default(USER)
-  bookings  Booking[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  role      Role     @default(USER)
+
+  bookings      TourBooking[]
+  createdTours  TourPackage[] @relation("CreatedTours")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([role])
 }
 
-model Route {
-  id         String     @id @default(cuid())
-  fromCity   String
-  toCity     String
-  distanceKm Int
-  durationMinutes Int
-  imageUrl   String?
-  schedules  Schedule[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+// ────────────────────────────────────────────────────────────
+// Tour package — the core entity
+// ────────────────────────────────────────────────────────────
 
-  @@index([fromCity, toCity])
+model TourPackage {
+  id            String     @id @default(cuid())
+  slug          String     @unique
+  title         String
+  description   String     @db.Text
+  highlights    String[]   @default([])  // bullet points (e.g. "AC Bus", "All entry fees")
+
+  coverImage    String
+  gallery       String[]   @default([])
+
+  region        TourRegion
+  destinationCity String
+
+  durationDays  Int        // 1 = day trip, 3+ = multi-day
+  departureDate DateTime
+  returnDate    DateTime
+
+  adultPrice    Int        // in BDT, integer
+  childPrice    Int        // 5-12 yrs
+
+  capacity      Int        // total seats sellable
+  minTravellers Int        @default(10)  // tour cancels if not met
+
+  status        TourStatus @default(DRAFT)
+
+  spots         TourSpot[]
+  pickupPoints  PickupPoint[]
+  bookings      TourBooking[]
+  busAssignments BusAssignment[]
+
+  createdById   String
+  createdBy     User       @relation("CreatedTours", fields: [createdById], references: [id])
+
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([status, departureDate])
+  @@index([region])
+  @@index([durationDays])
 }
 
-model Bus {
-  id          String     @id @default(cuid())
-  busNumber   String     @unique
-  operator    String
-  type        BusType    @default(AC)
-  totalSeats  Int        @default(40)
-  amenities   String[]   @default([])
-  rating      Float      @default(4.5)
-  schedules   Schedule[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+// ────────────────────────────────────────────────────────────
+// Sightseeing spots inside a tour
+// ────────────────────────────────────────────────────────────
+
+model TourSpot {
+  id            String      @id @default(cuid())
+  tourPackageId String
+
+  name          String
+  description   String?     @db.Text
+  image         String?
+
+  dayNumber     Int         @default(1)
+  orderIndex    Int                       // sequence within day
+
+  startTime     String?                   // "15:00" — optional schedule hint
+  stayMinutes   Int                       // how long the bus stops here
+
+  entryFeeIncluded Boolean   @default(true)
+
+  tourPackage   TourPackage @relation(fields: [tourPackageId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([tourPackageId, dayNumber, orderIndex])
 }
 
-model Schedule {
-  id            String    @id @default(cuid())
-  routeId       String
-  busId         String
-  departureTime DateTime
-  arrivalTime   DateTime
-  price         Int
-  availableSeats Int
-  route         Route     @relation(fields: [routeId], references: [id], onDelete: Cascade)
-  bus           Bus       @relation(fields: [busId], references: [id], onDelete: Cascade)
-  seats         Seat[]
-  bookings      Booking[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+// ────────────────────────────────────────────────────────────
+// Pickup / boarding points per tour
+// ────────────────────────────────────────────────────────────
 
-  @@index([departureTime])
-  @@index([routeId, departureTime])
+model PickupPoint {
+  id            String      @id @default(cuid())
+  tourPackageId String
+
+  name          String                    // e.g. "Gabtoli Bus Stand"
+  city          String                    // "Dhaka"
+  address       String?                   // detailed
+  landmark      String?
+
+  pickupTime    DateTime                  // exact datetime bus arrives
+  returnTime    DateTime                  // exact datetime bus drops off
+  orderIndex    Int         @default(0)   // visit order on departure day
+
+  tourPackage   TourPackage @relation(fields: [tourPackageId], references: [id], onDelete: Cascade)
+  bookings      TourBooking[]
+
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([tourPackageId])
 }
 
-model Seat {
-  id           String     @id @default(cuid())
-  scheduleId   String
-  seatNumber   String
-  status       SeatStatus @default(AVAILABLE)
-  bookingId    String?
-  schedule     Schedule   @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
-  booking      Booking?   @relation(fields: [bookingId], references: [id], onDelete: SetNull)
-  lockedUntil  DateTime?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+// ────────────────────────────────────────────────────────────
+// Tour booking
+// ────────────────────────────────────────────────────────────
 
-  @@unique([scheduleId, seatNumber])
-  @@index([scheduleId])
-}
-
-model Booking {
+model TourBooking {
   id              String        @id @default(cuid())
-  bookingCode     String        @unique @default(cuid())
+  bookingCode     String        @unique
+
   userId          String
-  scheduleId      String
-  seatNumbers     String[]
-  totalAmount     Int
+  tourPackageId   String
+  pickupPointId   String
+
+  adultsCount     Int           @default(0)
+  childrenCount   Int           @default(0)
+  infantsCount    Int           @default(0)
+  travellers      Json          // [{name, age, type}]
+
+  totalAmount     Int           // BDT, integer
+  specialRequest  String?       @db.Text
+
   status          BookingStatus @default(PENDING)
   paymentStatus   PaymentStatus @default(PENDING)
-  passengerName   String
-  passengerPhone  String
-  passengerEmail  String
+
+  // contact (denormalized — survives if user is deleted)
+  contactName     String
+  contactPhone    String
+  contactEmail    String
+
   user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  schedule        Schedule      @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
-  seats           Seat[]
+  tourPackage     TourPackage   @relation(fields: [tourPackageId], references: [id], onDelete: Cascade)
+  pickupPoint     PickupPoint   @relation(fields: [pickupPointId], references: [id])
+
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
   @@index([userId])
-  @@index([scheduleId])
+  @@index([tourPackageId, status])
+  @@index([pickupPointId])
+}
+
+// ────────────────────────────────────────────────────────────
+// Fleet (admin-managed) and bus assignment per tour
+// ────────────────────────────────────────────────────────────
+
+model Bus {
+  id          String          @id @default(cuid())
+  busNumber   String          @unique
+  operatorName String                              // "Pothik Fleet" or partner
+  type        BusType         @default(AC)
+  totalSeats  Int             @default(40)
+  amenities   String[]        @default([])
+  rating      Float           @default(4.5)
+  notes       String?
+
+  assignments BusAssignment[]
+
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model BusAssignment {
+  id              String      @id @default(cuid())
+  tourPackageId   String
+  busId           String
+
+  // pickup points this bus is responsible for, in order of visit
+  pickupPointIds  String[]    @default([])
+  notes           String?
+
+  tourPackage     TourPackage @relation(fields: [tourPackageId], references: [id], onDelete: Cascade)
+  bus             Bus         @relation(fields: [busId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@unique([tourPackageId, busId])
+  @@index([tourPackageId])
 }

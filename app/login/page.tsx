@@ -26,7 +26,7 @@ function LoginFallback() {
 function LoginForm() {
   const router = useRouter();
   const params = useSearchParams();
-  const callbackUrl = params.get("callbackUrl") ?? "/dashboard";
+  const explicitCallback = params.get("callbackUrl");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,12 +39,21 @@ function LoginForm() {
       password,
       redirect: false,
     });
-    setLoading(false);
     if (res?.ok) {
+      // Look up the role from the session to decide where to land.
+      // If the user came from a protected page, honour that callbackUrl.
+      let target = explicitCallback ?? "/dashboard";
+      if (!explicitCallback) {
+        const sessionRes = await fetch("/api/auth/session");
+        const session = await sessionRes.json().catch(() => null);
+        if (session?.user?.role === "ADMIN") target = "/admin";
+      }
+      setLoading(false);
       toast.success("Welcome back!");
-      router.push(callbackUrl);
+      router.push(target);
       router.refresh();
     } else {
+      setLoading(false);
       toast.error("Invalid email or password");
     }
   };

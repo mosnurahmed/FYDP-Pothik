@@ -1,43 +1,43 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Armchair, ShieldCheck, Wallet, Clock, Bus, HeartHandshake } from "lucide-react";
+import { Bus, MapPinned, Users2, Wallet, Clock, ShieldCheck } from "lucide-react";
 
 const features = [
   {
-    icon: Armchair,
-    title: "Pick your exact seat",
-    body: "Real-time interactive seat layout. See who's booked, who's not, and lock in the seat you want — front row, window, or aisle.",
+    icon: Bus,
+    title: "Hassle-free transport",
+    body: "AC bus from your nearest pickup point to every spot on the itinerary. No managing your own ride, no waiting at terminals.",
     accent: "from-brand-500 to-brand-700",
   },
   {
-    icon: ShieldCheck,
-    title: "Verified operators only",
-    body: "Every bus operator on Pothik is hand-checked for safety records, punctuality, and passenger reviews.",
+    icon: MapPinned,
+    title: "Curated sightseeing route",
+    body: "We plan the stops, the timing, and how long you spend at each spot — so you see the most without the rush.",
     accent: "from-accent-400 to-accent-600",
   },
   {
-    icon: Wallet,
-    title: "Transparent pricing",
-    body: "What you see is what you pay. No surprise fees, no inflated charges at checkout. Ever.",
+    icon: Users2,
+    title: "Travel as a group",
+    body: "Solo or with family — you'll meet other travellers on the bus. Independent groups, shared road.",
     accent: "from-emerald-500 to-teal-700",
   },
   {
-    icon: Clock,
-    title: "Instant confirmation",
-    body: "Your ticket arrives in your inbox the moment payment clears. No waiting, no anxious phone calls.",
+    icon: Wallet,
+    title: "Honest, all-in pricing",
+    body: "Bus + entry fees + tour leader, all bundled. Hotel and food are on you, but those are the only extras.",
     accent: "from-sky-500 to-indigo-700",
   },
   {
-    icon: Bus,
-    title: "Live route tracking",
-    body: "Know where your bus is. Track departures and arrivals in real time — for you and the people picking you up.",
+    icon: Clock,
+    title: "On time, every time",
+    body: "Pickup windows are tight. Buses leave when scheduled. Your time is the most important thing on this trip.",
     accent: "from-violet-500 to-purple-700",
   },
   {
-    icon: HeartHandshake,
-    title: "Easy cancellations",
-    body: "Plans changed? Cancel up to 6 hours before departure and get refunded — no questions asked.",
+    icon: ShieldCheck,
+    title: "Vetted operators",
+    body: "Every bus and driver in our fleet meets safety standards we'd want for our own family.",
     accent: "from-rose-500 to-pink-700",
   },
 ];
@@ -48,11 +48,12 @@ export default function Features() {
       <div className="text-center max-w-2xl mx-auto">
         <span className="section-subtitle">Why Pothik</span>
         <h2 className="section-title mt-3">
-          Built for the way you actually travel
+          Group travel without the group-chat chaos
         </h2>
         <p className="mt-4 text-ink-600">
-          Every feature is shaped by one question: would this make a real journey better?
-          If the answer is no, it doesn't ship.
+          You bring the people you want to travel with — or come alone and
+          meet new ones on the bus. We handle the logistics, the route, and
+          the timing.
         </p>
       </div>
 

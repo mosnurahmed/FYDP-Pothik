@@ -41,8 +41,9 @@ export default function Footer() {
               Explore
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><Link href="/search" className="hover:text-brand-300">Find Buses</Link></li>
-              <li><Link href="/routes" className="hover:text-brand-300">Popular Routes</Link></li>
+              <li><Link href="/tours" className="hover:text-brand-300">All Tours</Link></li>
+              <li><Link href="/tours?duration=DAY_TRIP" className="hover:text-brand-300">Day Trips</Link></li>
+              <li><Link href="/tours?duration=MULTI_DAY" className="hover:text-brand-300">Multi-day Tours</Link></li>
               <li><Link href="/about" className="hover:text-brand-300">About Pothik</Link></li>
               <li><Link href="/dashboard" className="hover:text-brand-300">My Dashboard</Link></li>
             </ul>
@@ -85,13 +86,33 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-ink-400">
-            © {new Date().getFullYear()} Pothik. Crafted with care in Bangladesh.
-          </p>
-          <p className="text-xs text-ink-400">
-            Built with Next.js · TypeScript · Tailwind · Prisma
-          </p>
+        <div className="mt-14 border-t border-white/10 pt-6 space-y-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+            <p className="text-xs text-ink-400">
+              © {new Date().getFullYear()} Pothik. Built in Bangladesh.
+            </p>
+            <p className="text-xs text-ink-400">
+              Next.js · TypeScript · Tailwind · Prisma
+            </p>
+          </div>
+          <div className="text-xs text-ink-500 leading-relaxed">
+            <span className="text-ink-400">Developed by </span>
+            <span className="text-ink-200 font-semibold">Mosnur Ahmed</span>
+            <span className="text-ink-400"> · with </span>
+            <span className="text-ink-300">Nusrat Jahan Sarna</span>
+            <span className="text-ink-400"> and </span>
+            <span className="text-ink-300">Farzana Ahmed Rithen</span>
+            <span className="text-ink-400">. Based on the research paper </span>
+            <a
+              href="https://www.mdpi.com/2076-3417/13/19/10973"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-300 hover:text-brand-200 hover:underline"
+            >
+              "A Framework of Vehicle Usage Optimization for Tour Purposes"
+            </a>
+            <span className="text-ink-400"> (Applied Sciences, MDPI, 2023).</span>
+          </div>
         </div>
       </div>
     </footer>

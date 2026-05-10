@@ -8,17 +8,17 @@ const values = [
   {
     icon: Compass,
     title: "Travel that just works",
-    body: "We obsess over every step of the journey — search to seat to ride. If a moment feels clunky, it doesn't ship.",
+    body: "Curated tours. Verified buses. A planned route. We obsess over the parts of group travel everyone hates so you don't have to.",
   },
   {
     icon: Heart,
     title: "Honest by default",
-    body: "Real prices. Real seats. Real reviews. We never inflate fares at checkout, and we never hide fees in fine print.",
+    body: "What you pay covers transport, entry fees, and a tour leader. Hotel and food are on you — and that's all the extras.",
   },
   {
     icon: Target,
-    title: "Build for Bangladesh",
-    body: "Pothik is made by people who travel these routes. Local context shapes every product decision we make.",
+    title: "Built for Bangladesh",
+    body: "Pothik is made by people who actually travel these routes. The roads, the spots, the timing — it's all from local experience.",
   },
 ];
 
@@ -40,15 +40,16 @@ export default function AboutPage() {
                   <span className="text-gradient">re-imagined.</span>
                 </h1>
                 <p className="mt-5 text-ink-600 leading-relaxed">
-                  Pothik started with a simple question: why is booking a bus
-                  ticket harder than ordering food? We built the product we
-                  wished existed — interactive seat maps, instant
-                  confirmations, transparent pricing, and a design that
-                  respects your time.
+                  Pothik started with a simple question: why is travelling in a
+                  group across Bangladesh always so chaotic? Coordinating buses,
+                  fighting over routes, getting separated at every stop. We
+                  built the product we wished existed — curated tours, one bus,
+                  one timed itinerary, and a pickup point near your home.
                 </p>
                 <p className="mt-4 text-ink-600 leading-relaxed">
-                  Today, we connect thousands of travellers to verified
-                  operators across the country. We're just getting started.
+                  We don't do hotels and we don't do food. We just do the part
+                  that's hardest to arrange — the bus, the route, and the
+                  timing. Everything else is yours.
                 </p>
               </div>
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">

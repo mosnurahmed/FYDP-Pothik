@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Bus, Map, Smile, ShieldCheck } from "lucide-react";
 
 const stats = [
-  { value: "120+", label: "Trusted operators", icon: Bus },
-  { value: "350+", label: "Daily departures", icon: Map },
-  { value: "50K+", label: "Happy travellers", icon: Smile },
-  { value: "99.7%", label: "On-time arrival", icon: ShieldCheck },
+  { value: "30+", label: "Tours scheduled", icon: Map },
+  { value: "12", label: "Buses in fleet", icon: Bus },
+  { value: "2.5K+", label: "Happy travellers", icon: Smile },
+  { value: "100%", label: "Verified operators", icon: ShieldCheck },
 ];
 
 export default function Stats() {

@@ -1,37 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Armchair, CreditCard, Ticket } from "lucide-react";
+import { Compass, MapPin, Bus, Camera } from "lucide-react";
 
 const steps = [
   {
-    icon: Search,
-    title: "Search your route",
-    body: "Pick origin, destination, and travel date. We'll show every bus running that day.",
+    icon: Compass,
+    title: "Pick a tour",
+    body: "Browse our curated trips — single-day or multi-day. Read the itinerary, see the spots.",
   },
   {
-    icon: Armchair,
-    title: "Choose your seat",
-    body: "Live seat layout. Click the seat you want — front, window, aisle. It's locked while you check out.",
+    icon: MapPin,
+    title: "Choose your pickup",
+    body: "We list 4-6 boarding points per tour. Pick the one closest to home.",
   },
   {
-    icon: CreditCard,
-    title: "Pay securely",
-    body: "Card, mobile banking, or net banking. SSL-encrypted, never stored on our servers.",
+    icon: Bus,
+    title: "Hop on the bus",
+    body: "Show up on time. We handle the route, the entries, the timing — all of it.",
   },
   {
-    icon: Ticket,
-    title: "Ride with your e-ticket",
-    body: "Confirmation in seconds. Show the QR code at boarding — that's it.",
+    icon: Camera,
+    title: "Just enjoy",
+    body: "Take photos, meet people, see Bangladesh. We'll get you home.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="container-padded py-24">
+    <section id="how-it-works" className="container-padded py-24">
       <div className="text-center max-w-2xl mx-auto">
         <span className="section-subtitle">How it works</span>
-        <h2 className="section-title mt-3">From search to seat in 90 seconds</h2>
+        <h2 className="section-title mt-3">From browsing to boarding in 4 steps</h2>
       </div>
 
       <div className="mt-14 relative">

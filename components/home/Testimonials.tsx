@@ -9,7 +9,7 @@ const reviews = [
     name: "Tanvir Ahmed",
     role: "Software engineer, Dhaka",
     quote:
-      "I used to dread booking buses. Pothik flipped that — pick the seat I want, see the price upfront, ticket in my inbox in 30 seconds. This is how it should work.",
+      "I'd been wanting to visit Sajek for two years. With Pothik I just picked the trip, picked Mohakhali pickup, and that was it. No coordinating with friends, no last-minute bus drama.",
     avatar:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
     rating: 5,
@@ -18,7 +18,7 @@ const reviews = [
     name: "Farhana Rahman",
     role: "University student, Sylhet",
     quote:
-      "Travelled home for Eid using Pothik. Confirmation was instant, the bus was exactly on time, and the seat was the one I picked. Recommended to my whole family.",
+      "Did the Cox's Bazar tour for Eid. The bus was on time, every spot on the itinerary actually happened, and the tour leader was a gem. My family is hooked.",
     avatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
     rating: 5,
@@ -27,7 +27,7 @@ const reviews = [
     name: "Imran Hossain",
     role: "Travel blogger",
     quote:
-      "The seat-map UI is the best I've seen on any Bangladeshi platform. Clean, fast, no broken pages. Whoever built this — they actually care.",
+      "Finally a Bangladeshi platform that respects your time. Booking took 60 seconds. The bus showed up. Spots were timed perfectly. This is the way.",
     avatar:
       "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=200&q=80",
     rating: 5,
@@ -40,7 +40,7 @@ export default function Testimonials() {
       <div className="text-center max-w-2xl mx-auto">
         <span className="section-subtitle">Traveller stories</span>
         <h2 className="section-title mt-3">
-          People are switching — and not looking back
+          The reviews from people who've ridden along
         </h2>
       </div>
 

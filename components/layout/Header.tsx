@@ -3,35 +3,47 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { Bus, Menu, X, User, LogOut, LayoutDashboard, Ticket } from "lucide-react";
+import { Bus, Menu, X, User, LogOut, LayoutDashboard, Ticket, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/search", label: "Find Buses" },
-  { href: "/routes", label: "Routes" },
+  { href: "/tours", label: "Tours" },
   { href: "/about", label: "About" },
 ];
 
-export default function Header() {
+type HeaderProps = {
+  /**
+   * When true, the header is transparent at the top of the page and
+   * fades to a solid background on scroll. Use on pages with a dark hero.
+   * When false, the header is always solid.
+   */
+  transparentOnTop?: boolean;
+};
+
+export default function Header({ transparentOnTop = false }: HeaderProps) {
   const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!transparentOnTop) {
+      setScrolled(true);
+      return;
+    }
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [transparentOnTop]);
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/85 backdrop-blur-xl border-b border-ink-100 shadow-sm"
+          ? "bg-white/90 backdrop-blur-xl border-b border-ink-100 shadow-sm"
           : "bg-transparent"
       )}
     >
@@ -44,7 +56,12 @@ export default function Header() {
           <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-glow transition-transform group-hover:scale-110">
             <Bus className="h-5 w-5 text-white" strokeWidth={2.5} />
           </span>
-          <span className="font-display text-xl font-bold tracking-tight text-ink-900">
+          <span
+            className={cn(
+              "font-display text-xl font-bold tracking-tight transition-colors",
+              scrolled ? "text-ink-900" : "text-white drop-shadow-sm"
+            )}
+          >
             Pothik
           </span>
         </Link>
@@ -54,7 +71,12 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-sm font-medium text-ink-600 rounded-lg transition-colors hover:text-brand-700 hover:bg-brand-50"
+              className={cn(
+                "px-4 py-2 text-sm font-semibold rounded-lg transition-colors",
+                scrolled
+                  ? "text-ink-700 hover:text-brand-700 hover:bg-brand-50"
+                  : "text-white/90 hover:text-white hover:bg-white/10"
+              )}
             >
               {link.label}
             </Link>
@@ -66,12 +88,22 @@ export default function Header() {
             <div className="relative">
               <button
                 onClick={() => setMenuOpen((s) => !s)}
-                className="flex items-center gap-2 rounded-xl border border-ink-200 bg-white px-3 py-1.5 hover:border-brand-300 transition-colors"
+                className={cn(
+                  "flex items-center gap-2 rounded-xl border px-3 py-1.5 transition-colors",
+                  scrolled
+                    ? "border-ink-200 bg-white hover:border-brand-300"
+                    : "border-white/30 bg-white/10 backdrop-blur hover:bg-white/20"
+                )}
               >
                 <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-xs font-bold text-white">
                   {session.user?.name?.[0]?.toUpperCase() ?? "U"}
                 </span>
-                <span className="text-sm font-medium text-ink-700 max-w-[100px] truncate">
+                <span
+                  className={cn(
+                    "text-sm font-medium max-w-[100px] truncate",
+                    scrolled ? "text-ink-700" : "text-white"
+                  )}
+                >
                   {session.user?.name}
                 </span>
               </button>
@@ -80,6 +112,18 @@ export default function Header() {
                   className="absolute right-0 mt-2 w-56 rounded-xl border border-ink-100 bg-white shadow-xl py-1 animate-slide-down"
                   onMouseLeave={() => setMenuOpen(false)}
                 >
+                  {(session.user as any)?.role === "ADMIN" && (
+                    <>
+                      <Link
+                        href="/admin"
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-50"
+                      >
+                        <ShieldCheck className="h-4 w-4" />
+                        Admin panel
+                      </Link>
+                      <div className="my-1 border-t border-ink-100" />
+                    </>
+                  )}
                   <Link
                     href="/dashboard"
                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-ink-700 hover:bg-brand-50"
@@ -92,7 +136,7 @@ export default function Header() {
                     className="flex items-center gap-3 px-4 py-2.5 text-sm text-ink-700 hover:bg-brand-50"
                   >
                     <Ticket className="h-4 w-4" />
-                    My Bookings
+                    My Tours
                   </Link>
                   <Link
                     href="/dashboard/profile"
@@ -114,10 +158,26 @@ export default function Header() {
             </div>
           ) : (
             <>
-              <Link href="/login" className="btn-ghost">
+              <Link
+                href="/login"
+                className={cn(
+                  "inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition-colors",
+                  scrolled
+                    ? "text-ink-700 hover:bg-ink-100 hover:text-ink-900"
+                    : "text-white hover:bg-white/10"
+                )}
+              >
                 Log in
               </Link>
-              <Link href="/register" className="btn-primary">
+              <Link
+                href="/register"
+                className={cn(
+                  "inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold transition-all active:scale-[0.98]",
+                  scrolled
+                    ? "bg-brand-600 text-white shadow-soft hover:bg-brand-700 hover:shadow-glow"
+                    : "bg-white text-brand-700 shadow-md hover:bg-brand-50"
+                )}
+              >
                 Sign up
               </Link>
             </>
@@ -127,7 +187,12 @@ export default function Header() {
         <button
           aria-label="Toggle menu"
           onClick={() => setMobileOpen((s) => !s)}
-          className="md:hidden grid h-10 w-10 place-items-center rounded-lg hover:bg-ink-100"
+          className={cn(
+            "md:hidden grid h-10 w-10 place-items-center rounded-lg transition-colors",
+            scrolled
+              ? "text-ink-900 hover:bg-ink-100"
+              : "text-white hover:bg-white/10"
+          )}
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>

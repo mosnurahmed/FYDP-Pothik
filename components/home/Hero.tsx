@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, ShieldCheck, Zap } from "lucide-react";
-import SearchBar from "../search/SearchBar";
+import { Sparkles, Compass, ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -11,20 +11,20 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10">
         <Image
           src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2400&q=80"
-          alt="Scenic road through mountains"
+          alt="Highway through hills"
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-900/75 to-ink-950/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-900/65 to-ink-950/95" />
         <div className="absolute inset-0 bg-hero-pattern opacity-40" />
       </div>
 
       <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-brand-500/30 blur-3xl animate-float" />
       <div className="absolute top-40 -right-20 h-80 w-80 rounded-full bg-accent-400/20 blur-3xl animate-float [animation-delay:2s]" />
 
-      <div className="container-padded relative pt-20 pb-32 md:pt-28 md:pb-40">
+      <div className="container-padded relative pt-24 pb-32 md:pt-32 md:pb-40">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,36 +33,44 @@ export default function Hero() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5 text-accent-300" />
-            Real-time seat selection · Trusted operators
+            Curated group tours · Transport handled
           </span>
 
           <h1 className="mt-6 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-white">
-            Travel Bangladesh,{" "}
+            Discover Bangladesh,{" "}
             <span className="bg-gradient-to-r from-accent-300 via-brand-300 to-brand-100 bg-clip-text text-transparent">
-              the smart way.
+              the easy way.
             </span>
           </h1>
 
           <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-ink-200">
-            Pick your seat, lock your fare, and ride with confidence. Pothik connects
-            you to thousands of departures across the country — with transparent
-            pricing and zero hidden fees.
+            Pick a tour. Choose where we pick you up. Enjoy the ride. Pothik
+            takes care of the bus and the route — you just bring the company.
+            Hotels and meals are on you, the journey is on us.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-ink-200">
-            <Pill icon={<ShieldCheck className="h-4 w-4" />} text="Verified operators" />
-            <Pill icon={<Zap className="h-4 w-4" />} text="Instant confirmation" />
-            <Pill icon={<Sparkles className="h-4 w-4" />} text="Live seat updates" />
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link
+              href="/tours"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent-400 px-6 py-3.5 text-sm font-semibold text-ink-900 shadow-lg transition-all hover:bg-accent-300 hover:shadow-glow active:scale-[0.98]"
+            >
+              <Compass className="h-4 w-4" />
+              Browse all tours
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="#how-it-works"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/10"
+            >
+              How it works
+            </Link>
           </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-12"
-        >
-          <SearchBar />
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-ink-200">
+            <Pill icon={<ShieldCheck className="h-4 w-4" />} text="Verified buses" />
+            <Pill icon={<Sparkles className="h-4 w-4" />} text="All entry fees included" />
+            <Pill icon={<Compass className="h-4 w-4" />} text="Local tour leaders" />
+          </div>
         </motion.div>
       </div>
 

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Smartphone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
   return (
@@ -27,83 +27,34 @@ export default function CTASection() {
         <div className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-accent-400/30 blur-3xl" />
         <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-brand-400/30 blur-3xl" />
 
-        <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-              Ready when you are
+        <div className="relative max-w-2xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+            Bangladesh, off the beaten path
+          </span>
+          <h2 className="mt-4 font-display text-3xl md:text-5xl font-bold leading-tight text-white">
+            One bus. One curated route.{" "}
+            <span className="bg-gradient-to-r from-accent-300 to-brand-200 bg-clip-text text-transparent">
+              Many memories.
             </span>
-            <h2 className="mt-4 font-display text-3xl md:text-5xl font-bold leading-tight text-white">
-              Your next journey is{" "}
-              <span className="bg-gradient-to-r from-accent-300 to-brand-200 bg-clip-text text-transparent">
-                three taps away.
-              </span>
-            </h2>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-200">
-              Join the travellers who stopped queuing at counters and started
-              booking from their pocket. Free to use, transparent pricing,
-              cancel anytime.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/search"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent-400 px-6 py-3.5 font-semibold text-ink-900 shadow-lg transition-all hover:bg-accent-300 hover:shadow-xl active:scale-[0.98]"
-              >
-                Find buses now
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/register"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur transition-all hover:bg-white/10"
-              >
-                Create free account
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative hidden lg:block">
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="relative w-72 h-[480px] rounded-[2.5rem] border-8 border-ink-900 bg-ink-950 shadow-2xl overflow-hidden rotate-6 hover:rotate-0 transition-transform duration-700">
-                <div className="h-full bg-gradient-to-br from-brand-500 to-brand-800 p-6 text-white">
-                  <div className="flex items-center gap-2">
-                    <Smartphone className="h-4 w-4" />
-                    <span className="text-xs font-semibold">Pothik App</span>
-                  </div>
-                  <div className="mt-8 text-3xl font-display font-bold">
-                    Dhaka → <br />
-                    Cox's Bazar
-                  </div>
-                  <div className="mt-2 text-sm opacity-80">Tomorrow · 09:30 PM</div>
-
-                  <div className="mt-8 rounded-2xl bg-white/10 backdrop-blur p-4">
-                    <div className="flex items-center justify-between text-xs opacity-90">
-                      <span>Seat</span>
-                      <span>A12 (Window)</span>
-                    </div>
-                    <div className="mt-1 flex items-center justify-between text-xs opacity-90">
-                      <span>Total</span>
-                      <span className="font-semibold">৳ 1,200</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 grid grid-cols-5 gap-1.5">
-                    {Array.from({ length: 30 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className={`h-6 rounded-md ${
-                          [3, 7, 12, 19, 24].includes(i)
-                            ? "bg-accent-400"
-                            : "bg-white/20"
-                        }`}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="mt-6 rounded-xl bg-accent-400 py-3 text-center font-semibold text-ink-900">
-                    Confirm booking
-                  </div>
-                </div>
-              </div>
-            </div>
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-ink-200">
+            See the country with people who actually want to be on the road.
+            Pothik runs the bus, you bring the soundtrack.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/tours"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent-400 px-6 py-3.5 font-semibold text-ink-900 shadow-lg transition-all hover:bg-accent-300 hover:shadow-xl active:scale-[0.98]"
+            >
+              Browse all tours
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/register"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/5 px-6 py-3.5 font-semibold text-white backdrop-blur transition-all hover:bg-white/10"
+            >
+              Create free account
+            </Link>
           </div>
         </div>
       </motion.div>

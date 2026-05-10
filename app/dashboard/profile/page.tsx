@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { User, Mail, Phone, Calendar } from "lucide-react";
 import { formatDate } from "@/lib/utils";
@@ -7,10 +6,8 @@ import { formatDate } from "@/lib/utils";
 export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
-  const session = await getServerSession(authOptions);
-  const userId = (session?.user as any)?.id as string;
-
-  const user = await prisma.user.findUnique({ where: { id: userId } });
+  const session = await requireUser();
+  const user = await prisma.user.findUnique({ where: { id: session.id } });
   if (!user) return null;
 
   return (

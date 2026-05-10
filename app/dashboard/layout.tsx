@@ -1,14 +1,13 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getSessionUser } from "@/lib/auth";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { LayoutDashboard, Ticket, User } from "lucide-react";
 
 const items = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-  { href: "/dashboard/bookings", label: "My Bookings", icon: Ticket },
+  { href: "/dashboard/bookings", label: "My Tours", icon: Ticket },
   { href: "/dashboard/profile", label: "Profile", icon: User },
 ];
 
@@ -17,7 +16,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await getSessionUser();
   if (!session) redirect("/login?callbackUrl=/dashboard");
 
   return (
@@ -29,13 +28,13 @@ export default async function DashboardLayout({
             <aside className="space-y-1">
               <div className="rounded-2xl border border-ink-100 bg-white p-4 shadow-soft mb-4">
                 <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-white font-bold">
-                  {session.user?.name?.[0]?.toUpperCase() ?? "U"}
+                  {session.name?.[0]?.toUpperCase() ?? "U"}
                 </div>
                 <div className="mt-3 font-semibold text-ink-900 truncate">
-                  {session.user?.name}
+                  {session.name}
                 </div>
                 <div className="text-xs text-ink-500 truncate">
-                  {session.user?.email}
+                  {session.email}
                 </div>
               </div>
               {items.map((it) => (
