@@ -79,7 +79,6 @@ The seed inserts five sample tours (Cox’s Bazar three-day, Sajek three-day, Su
 
 | Email              | Password       | Role  |
 |--------------------|----------------|-------|
-| `admin@pothik.bd`  | `admin123`     | ADMIN |
 | `demo@pothik.bd`   | `password123`  | USER  |
 
 Useful scripts:
