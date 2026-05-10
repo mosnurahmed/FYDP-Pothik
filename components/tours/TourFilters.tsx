@@ -29,7 +29,7 @@ export default function TourFilters() {
   const [isPending, startTransition] = useTransition();
 
   const update = (key: string, value: string) => {
-    const next = new URLSearchParams(params);
+    const next = new URLSearchParams(params.toString());
     if (value) next.set(key, value);
     else next.delete(key);
     startTransition(() => {
