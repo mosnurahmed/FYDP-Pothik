@@ -101,12 +101,10 @@ async function main() {
         "Dedicated tour leader on board",
       ],
       coverImage:
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1720180434916-f6702ba9325f?auto=format&fit=crop&w=1600&q=80",
       ],
       region: TourRegion.COASTAL,
       destinationCity: "Cox's Bazar",
@@ -336,11 +334,11 @@ async function main() {
         "Free time on the riverbank",
       ],
       coverImage:
-        "https://images.unsplash.com/photo-1609952542401-00d1bd62ed85?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1706269071680-a4ae35d66497?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1609952542401-00d1bd62ed85?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1591019479261-1a103585c559?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1604999333679-b86d54738315?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1706269071680-a4ae35d66497?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1603293000399-9d6a8fdbe44e?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1604993497451-eed6eb271a9c?auto=format&fit=crop&w=1600&q=80",
       ],
       region: TourRegion.HISTORIC,
       destinationCity: "Sonargaon",
@@ -428,11 +426,11 @@ async function main() {
         "Karamjal & Harbaria walking trails",
       ],
       coverImage:
-        "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1520333764090-778d6dc95ec3?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1605552055839-cd88de5c2e2d?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1520333764090-778d6dc95ec3?auto=format&fit=crop&w=1600&q=80",
+        "https://plus.unsplash.com/premium_photo-1686310335921-38acc0679321?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1549300461-11c5b94e8855?auto=format&fit=crop&w=1600&q=80",
       ],
       region: TourRegion.RIVERINE,
       destinationCity: "Khulna",
@@ -511,11 +509,11 @@ async function main() {
         "Tea garden walk with the foreman",
       ],
       coverImage:
-        "https://images.unsplash.com/photo-1582450871972-ab5ca641643d?auto=format&fit=crop&w=1600&q=80",
+        "https://plus.unsplash.com/premium_photo-1692049123825-8d43174c9c5c?auto=format&fit=crop&w=1600&q=80",
       gallery: [
-        "https://images.unsplash.com/photo-1582450871972-ab5ca641643d?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?auto=format&fit=crop&w=1600&q=80",
-        "https://images.unsplash.com/photo-1597305877032-0668b3c6413b?auto=format&fit=crop&w=1600&q=80",
+        "https://plus.unsplash.com/premium_photo-1692049123825-8d43174c9c5c?auto=format&fit=crop&w=1600&q=80",
+        "https://plus.unsplash.com/premium_photo-1697730314165-2cd71dc3a6a4?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1544015759-237f87d55ef3?auto=format&fit=crop&w=1600&q=80",
       ],
       region: TourRegion.TEA_COUNTRY,
       destinationCity: "Srimangal",
